@@ -208,6 +208,34 @@
                 @echo "FILE = $(FILE)"
                 @echo "SRC = $(SRC)"
 
-    
+    单词排序：sort
+        如：对字符串LIST中的单词以首字母为准进行排序
+            .PHONY: all
+            LIST = banana pear apple peach orange 
+            SRC = $(sort $(FILE))
+            all:
+                @echo "FILE = $(FILE)"
+                @echo "SRC = $(SRC)"
+
+
+    取单词：word
+        如：取出LIST中的某一项
+            .PHONY: all
+            LIST = banana pear apple peach orange 
+            word1 = $(word 1, $(LIST))
+            word2 = $(word 2, $(LIST))
+            word3 = $(word 3, $(LIST))
+            word4 = $(word 4, $(LIST))
+            word5 = $(word 5, $(LIST))
+            word6 = $(word 6, $(LIST))
+            all:
+                @echo "word1 = $(word1)"
+                @echo "word2 = $(word2)"
+                @echo "word3 = $(word3)"
+                @echo "word4 = $(word4)"
+                @echo "word5 = $(word5)"
+                @echo "word6 = $(word6)"
+
+https://zhaixue.cc/makefile/makefile-text-func2.html
 
 */
