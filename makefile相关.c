@@ -236,6 +236,34 @@
                 @echo "word5 = $(word5)"
                 @echo "word6 = $(word6)"
 
+    取字串:wordlist
+        如：将字符串LIST中的前三个单词赋值给sub_list
+            .PHONY: all
+            LIST = banana pear apple peach orange 
+            sub_list = $(wordlist 1, 3, $(LIST))
+            all:
+                @echo "LIST = $(LIST)"
+                @echo "sub_list = $(sub_list)"
+
+    统计单词数目：words
+        如：LIST中单词的个数
+            .PHONY: all
+            LIST = banana pear apple peach orange 
+            all:
+                @echo "LIST = $(LIST)"
+                @echo "LIST len = $(words $(LIST))
+
+    取首个单词：firstword
+        如：
+            .PHONY: all
+            LIST = banana pear apple peach orange 
+            all:
+                @echo "LIST = $(LIST)"
+                @echo "first word = $(firstword $(LIST))"
+
+
+
+
 https://zhaixue.cc/makefile/makefile-text-func2.html
 
 */
