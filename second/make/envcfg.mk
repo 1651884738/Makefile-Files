@@ -1,0 +1,4 @@
+
+export SIGN := Serendipity
+
+
