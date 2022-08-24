@@ -46,6 +46,16 @@
     -: ：   告诉make在编译时忽略所有的错误
     @: ：   告诉make在执行命令前不要显示命令
 
+    在Linux系统中，波浪线表示HOME目录，以波浪线表示的文件名也表示特殊的含义
+    以我当前使用的Ubuntu为例，登录用户名为wit，则
+        ~：表示/home/wit这个目录
+        ~/.bashrc：表示/home/wit/.bashrc文件
+        ~wit：表示用户wit的HOME目录，即/home/wit
+        ~root：表示用户root的HOME目录，即/root
+        ~wit/.bashrc：表示/home/wit/.bashrc文件
+        ~root/.bashrc：表示/root/.bashrc文件
+
+
 7、变量替换
     .PHONY: all
     SRC := main.c sub.c
@@ -151,6 +161,9 @@
 
     all :
         $(call func, hello makefile)
+
+    call函数是唯一一个可以用来创建新的参数化的函数
+    $(call <expression>,<parm1>,<parm2>,<parm3>...)
 
 
 15、makefile函数之文本处理函数
@@ -313,7 +326,56 @@ https://zhaixue.cc/makefile/makefile-text-func2.html
                     @$(P) "join = $(join $(basename $(LIST)),".a .b .c")"
 
 
+17、其他常用函数
 
+        foreach 函数
+        在makefile中做一些循环或者遍历操作
+
+        $(foreach VAR,LIST,TEXT)
+
+        把LIST中使用空格分割的单词依次取出并赋值给变量VAR，然后执行TEXT表达式
+        重复这个过程，直到遍历完LIST中的最后一个单词。函数的返回值是TEXT多次计算的结果
+ 
+        if 函数
+        实现条件判断的功能，类似于ifeq关键字
+
+        $(if CONDITION,THEN-PART)
+        $(if CONDITION,THEN-PART[,ELSE-PART])
+
+        if condition为真（非空），执行then-part ,否则执行else-part
+
+        .PHONY: all
+        install_path = $(if $(install_path), $(install_path), /usr/local)
+        all:
+            @echo "install_path = $(install_path)"
+
+        origin 函数
+        $(origin <variable>)
+        origin函数的作用就是告诉你，你所关注的一个变量是从哪里来的
+
+        常见的返回值：
+        default：变量是一个默认的定义，比如 CC 这个变量
+        file：这个变量被定义在Makefile中
+        command line：这个变量是被命令行定义的
+        override：这个变量是被override指示符重新定义过的
+        automatic：一个命令运行中的自动化变量
+
+
+        shell 函数
+        在Makefile中运行shell命令
+        shell 函数的参数是shell命令，
+        shell命令的运行结果即为shell函数的返回值
+
+
+        error 和 warning
+        都用来给用户提示信息
+
+        $(error TEXT…)
+        只有包含error函数引用的命令执行时，
+        或者包含这个函数的定义变量被展开时，才会提示错误信息TEXT，并终止make的运行
+
+        $(warning TEXT…)
+        warning函数不会终止make的运行，make会继续运行下去
 
 
 
