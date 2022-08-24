@@ -262,8 +262,59 @@
                 @echo "first word = $(firstword $(LIST))"
 
 
-
-
 https://zhaixue.cc/makefile/makefile-text-func2.html
+
+
+16、文件名处理函数
+    
+        取路径名的目录：dir
+        $(dir NAMES…)
+        取出各个文件路径名中的目录部分并返回
+
+        取文件名：notdir
+        $(notdir NAMES…)
+        从一个文件路径名中去取文件名，而不是目录
+
+        取文件名后缀：suffix
+        $(suffix NAMES…)
+        文件名的后缀是文件名中以点号 . 开始（包括点号）的部分
+        若文件名没有后缀， suffix函数则返回空
+
+        取文件名前缀：basename
+        $(basename NAMES…)
+        basename函数返回最后一个点号之前的文件名（包括文件目录）部分；
+        如果一个文件名没有前缀，函数返回空字符串
+
+        给文件名加后缀：addsuffix
+        $(addsuffix SUFFIX, NAMES…)
+        给文件列表中的每个文件名添加后缀SUFFIX
+
+        给文件名加前缀：addprefix
+        $(addprefix PREFIX, NAMES…)
+        给文件列表中的每个文件名添加前缀PREFIX
+
+        单词连接：join
+        $(join LIST1,LIST2)
+        将字符串LIST1和字符串LIST2的各个对应单词依次连接
+
+        如：
+            .PHONY: all
+            LIST = /as/df/apple.c /we/er/aim.c /admin/usr/lnn.h
+            P = echo
+
+            all:
+                    @$(P) "LIST = $(LIST)"
+                    @$(P) "basename = $(basename $(LIST))"
+                    @$(P) "suffix = $(suffix $(LIST))"
+                    @$(P) "dir = $(dir $(LIST))"
+                    @$(P) "notdir = $(notdir $(LIST))"
+                    @$(P) "addsuffix = $(addsuffix .m, $(basename $(LIST)))"
+                    @$(P) "addprefix = $(addprefix _t,$(notdir $(LIST)))"
+                    @$(P) "join = $(join $(basename $(LIST)),".a .b .c")"
+
+
+
+
+
 
 */
