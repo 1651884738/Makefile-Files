@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "makeint.h": "c",
+        "config.h": "c"
+    }
+}

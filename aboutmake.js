@@ -277,6 +277,14 @@
 
 https://zhaixue.cc/makefile/makefile-text-func2.html
 
+    补充：
+
+        返回文件的绝对地址：realpath    abspath
+        如：
+        	@echo "the realpath is $(realpath ./)"
+	        @echo "the abspath is $(abspath ./)"
+
+        取最后一个单词：lastword
 
 16、文件名处理函数
     
@@ -349,6 +357,11 @@ https://zhaixue.cc/makefile/makefile-text-func2.html
         all:
             @echo "install_path = $(install_path)"
 
+        or函数
+
+        and函数
+
+
         origin 函数
         $(origin <variable>)
         origin函数的作用就是告诉你，你所关注的一个变量是从哪里来的
@@ -377,6 +390,24 @@ https://zhaixue.cc/makefile/makefile-text-func2.html
         $(warning TEXT…)
         warning函数不会终止make的运行，make会继续运行下去
 
+        feedback函数
+
+        value函数
+
+        eval函数
+
+        flavor函数
+
+        info函数
+
+        guile函数
+
+
+
+
+
+补充参考：
+https://blog.csdn.net/OnlyLove_/article/details/123832048
 
 
 */
